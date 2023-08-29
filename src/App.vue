@@ -111,7 +111,7 @@ export default {
         data:this.newStudent
       })
       this.dialogVisible = false
-      this.newStudent = { id: "", name: "", gender: "", gpa: "" }; // 清空输入框
+      this.newStudent = { id: "", name: "", gender: "", gpa: "" };
       this.getStudents();
       
       },
