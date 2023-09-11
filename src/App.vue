@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <div class="col-8 offset-2">
+  <!-- <div class="col-8 offset-2">
     <table class="table caption-top table-hover">
   <caption class="text-center">
     <h1>学生管理系统</h1>
@@ -55,80 +55,84 @@
 
 </el-button-group>
 </div>
-  </div>
+  </div> -->
+  <div>App</div>
+  <router-view></router-view>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import StudentCl from './components/StudentCl.vue'
+import router from './router'
+//import axios from 'axios'
+//import StudentCl from './components/StudentCl.vue'
 export default {
   name: 'App',
+  router,
   components:{
-    StudentCl
-  },
-  data() {
-    return{
-      page:1,
-      totalPages: 0,
-      dialogVisible: false,
-      students:[],
-      newStudent:{
-        id:"",
-        name:"",
-        gender:"",
-        gpa:"",
-      }
-
-    }
-  },
-
-  methods:{
-    getStudents(){
-      axios({
-        url:'http://localhost:8181/student',
-        method:'GET',
-      }).then(res=>{
-        console.log(res.data);
-        this.students=res.data;
-        this.calculateTotalPages();
-      })
-    },
-    handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(() => {
-            done();
-          })
-          .catch(() => {});
-      },
-    calculateTotalPages() {
-      this.totalPages = Math.ceil(this.students.length / 5);
-      },
-      addStudent(){
-        axios({
-        url:"http://localhost:8181/addstudent",
-        method:"POST",
-        data:this.newStudent
-      })
-      this.dialogVisible = false
-      this.newStudent = { id: "", name: "", gender: "", gpa: "" };
-      this.getStudents();
-      
-      },
-      next_page(){
-        this.page +=1;
-      },
-      last_page(){
-        if(this.page>=2)
-
-        this.page -=1;
-      },
-  },
-  computed:{
-    students_for_page(){
-return this.students.slice(this.page*5-5,this.page*5)
-    }
+   // StudentCl
   }
+//   data() {
+//     return{
+//       page:1,
+//       totalPages: 0,
+//       dialogVisible: false,
+//       students:[],
+//       newStudent:{
+//         id:"",
+//         name:"",
+//         gender:"",
+//         gpa:"",
+//       }
+
+//     }
+//   },
+
+//   methods:{
+//     getStudents(){
+//       axios({
+//         url:'http://localhost:8181/student',
+//         method:'GET',
+//       }).then(res=>{
+//         console.log(res.data);
+//         this.students=res.data;
+//         this.calculateTotalPages();
+//       })
+//     },
+//     handleClose(done) {
+//         this.$confirm('确认关闭？')
+//           .then(() => {
+//             done();
+//           })
+//           .catch(() => {});
+//       },
+//     calculateTotalPages() {
+//       this.totalPages = Math.ceil(this.students.length / 5);
+//       },
+//       addStudent(){
+//         axios({
+//         url:"http://localhost:8181/addstudent",
+//         method:"POST",
+//         data:this.newStudent
+//       })
+//       this.dialogVisible = false
+//       this.newStudent = { id: "", name: "", gender: "", gpa: "" };
+//       this.getStudents();
+      
+//       },
+//       next_page(){
+//         this.page +=1;
+//       },
+//       last_page(){
+//         if(this.page>=2)
+
+//         this.page -=1;
+//       },
+//   },
+//   computed:{
+//     students_for_page(){
+// return this.students.slice(this.page*5-5,this.page*5)
+//     }
+//   }
 }
 </script>
 

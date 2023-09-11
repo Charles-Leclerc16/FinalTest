@@ -13,6 +13,8 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 
 
 const app = createApp(App)
-
+import router from './router'
 app.use(ElementPlus)
+app.use(router)
 app.mount('#app')
+
