@@ -10,6 +10,9 @@
       <el-menu-item index="course">
         <router-link to="/course">Course</router-link>
       </el-menu-item>
+      <el-menu-item index="score">
+        <router-link to="/score">Score</router-link>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -19,7 +22,9 @@ export default {
       name :'NavComp'
 }
 </script>
-
 <style>
+.aside {
+  background-color: rgb(115, 172, 36)!important;
+}
 
 </style>

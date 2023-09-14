@@ -3,7 +3,7 @@
          <td v-show="!is_edit">{{ localStudent.id }}</td>
          <td v-show="!is_edit">{{ localStudent.name }}</td>
          <td v-show="!is_edit">{{ localStudent.gender }}</td>
-         <td v-show="!is_edit">{{ localStudent.gpa }}</td>
+         <td v-show="!is_edit">{{ formattedGpa }}</td>
          <td v-show="!is_edit">
            <el-button  type="primary" @click="modify">修改</el-button>
            <el-button type="danger" @click="deleteStudent">删除</el-button>
@@ -41,9 +41,11 @@ import axios from 'axios';
        
       })
     },
+
       modify(){
        this.is_edit=true;
      },
+
      save(){
       axios({
         url:"http://localhost:8181/updatestudent",
@@ -51,7 +53,9 @@ import axios from 'axios';
         data:this.localStudent
       })
       this.is_edit=false;
+      location.reload();
      },
+
      deleteStudent(){
       axios({
         url:"http://localhost:8181/deletestudent",
@@ -59,9 +63,16 @@ import axios from 'axios';
         data:this.localStudent
       }).then(() => {
         this.is_edit=false;
-        this.getStudents(); // 删除学生后重新获取学生列表
+        // this.getStudents(); // 删除学生后重新获取学生列表
+        location.reload();
       });
      }
+     },
+     computed:{
+      formattedGpa() {
+      // 计算属性来格式化GPA值，保留两位小数
+      return this.localStudent.gpa.toFixed(2);
+    }
      }
    }
    </script>

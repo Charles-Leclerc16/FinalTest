@@ -3,6 +3,7 @@ import ContainerComp from '../components/ContainerComp'
 //import StudentCl from '../components/StudentCl'
 import HomePage from '../components/HomePage'
 import CourseComp from '../components/CourseComp'
+import ScoreComp from '../components/ScoreComp'
 
 const routes = [ {
     path: "/",
@@ -19,6 +20,11 @@ const routes = [ {
              name: "course",
              component: CourseComp,
          },
+         {
+            path: "score",
+            name: "score",
+            component: ScoreComp,
+        },
     ]
     }
 ]

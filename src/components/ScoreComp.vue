@@ -1,24 +1,22 @@
 <template>
-    <div id="course">
+    <div id="score">
      
     <div class="col-8 offset-2">
       <table class="table caption-top table-hover">
     <caption class="text-center">
       <h1>学生管理系统</h1>
-      <el-button type="primary" @click="getCourse">获取课程信息</el-button>
-  
+      <el-button type="primary" @click="getScore">获取成绩信息</el-button>
+     
     </caption>
     <thead>
       <tr>
-        <th scope="col">课程编号</th>
-        <th scope="col">课程名称</th>
-        <th scope="col">权重</th>
-        <!-- <th scope="col">GPA</th> -->
-        <!-- <th scope="col">操作</th> -->
+        <th scope="col">学号</th>
+        <th scope="col">课程号</th>
+        <th scope="col">成绩</th>
       </tr>
     </thead>
     <tbody>
-      <CourseCl v-for="cos in courses_for_page" :key="cos.id" :course="cos"></CourseCl>
+      <ScoreCl v-for="scr in scores_for_page" :key="scr.idx" :score="scr"></ScoreCl>
     </tbody>
   </table>
   <div class="text-center">
@@ -34,40 +32,44 @@
   
   <script>
   import axios from 'axios'
-  import CourseCl from './CourseCl.vue'
+  import ScoreCl from './ScoreCl.vue'
   export default {
-    name: 'CourseComp',
+    name: 'ScoreComp',
     components:{
-      CourseCl
+      ScoreCl
     },
     data() {
       return{
         page:1,
         totalPages: 0,
         dialogVisible: false,
-        courses:[],
-        newCourses:{
-          id:"",
-          name:"",
-          credit:"",
+        scores:[],
+        newScores:{
+          sid:"",
+          cid:"",
+          score:"",
+          idx:"",
         }
+  
       }
     },
   
     methods:{
-      getCourse(){
+      getScore(){
         axios({
-          url:'http://localhost:8181/course',
+          url:'http://localhost:8181/score',
           method:'GET',
         }).then(res=>{
           console.log(res.data);
-          this.courses=res.data;
+          this.scores=res.data;
           this.calculateTotalPages();
         })
       },
+   
       calculateTotalPages() {
-        this.totalPages = Math.ceil(this.courses.length / 10);
+        this.totalPages = Math.ceil(this.scores.length / 10);
         },
+       
         next_page(){
           this.page +=1;
         },
@@ -77,8 +79,8 @@
         },
     },
     computed:{
-      courses_for_page(){
-  return this.courses.slice(this.page*10-10,this.page*10)
+      scores_for_page(){
+  return this.scores.slice(this.page*10-10,this.page*10)
       }
     }
   }

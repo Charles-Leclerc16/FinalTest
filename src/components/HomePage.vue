@@ -4,10 +4,11 @@
     <div class="col-8 offset-2">
       <table class="table caption-top table-hover">
     <caption class="text-center">
-      <h1>学生管理系统</h1>
+      <h1 >学生管理系统</h1>
       <el-button type="primary" @click="getStudents">获取学生信息</el-button>
-      <el-button type="primary" @click="dialogVisible = true">添加学生信息</el-button>
-  
+      <el-button type="danger" @click="dialogVisible = true">添加学生信息</el-button>
+      <el-button type="primary" @click="calculateGpa">计算学生GPA</el-button>
+
       <!-- <template>
     <el-button text @click="dialogVisible = true">
       click to open the Dialog
@@ -84,6 +85,16 @@
     },
   
     methods:{
+      calculateGpa() {
+    axios({
+      url: 'http://localhost:8181/gpa', // 后端的 GPA 计算接口
+      method: 'GET',
+    }).then((res) => {
+      console.log(res.data);
+      // 此处可以处理后端返回的学生 GPA 数据
+      // 可以将数据保存到组件的数据属性中，以供页面渲染或其他操作使用
+    });
+  },
       getStudents(){
         axios({
           url:'http://localhost:8181/student',
@@ -102,7 +113,7 @@
             .catch(() => {});
         },
       calculateTotalPages() {
-        this.totalPages = Math.ceil(this.students.length / 5);
+        this.totalPages = Math.ceil(this.students.length / 10);
         },
         addStudent(){
           axios({
@@ -126,13 +137,14 @@
     },
     computed:{
       students_for_page(){
-  return this.students.slice(this.page*5-5,this.page*5)
+  return this.students.slice(this.page*10-10,this.page*10)
       }
     }
   }
   </script>
   
-  <style></style>
-  
+  <style>
+
+  </style>
   
   
