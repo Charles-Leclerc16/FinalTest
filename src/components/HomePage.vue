@@ -87,12 +87,11 @@
     methods:{
       calculateGpa() {
     axios({
-      url: 'http://localhost:8181/gpa', // 后端的 GPA 计算接口
+      url: 'http://localhost:8181/gpa', 
       method: 'GET',
     }).then((res) => {
       console.log(res.data);
-      // 此处可以处理后端返回的学生 GPA 数据
-      // 可以将数据保存到组件的数据属性中，以供页面渲染或其他操作使用
+      
     });
   },
       getStudents(){
@@ -142,9 +141,8 @@
     }
   }
   </script>
-  
-  <style>
 
+  <style>
   </style>
   
   

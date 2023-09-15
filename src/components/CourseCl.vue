@@ -16,7 +16,7 @@
      data(){
        return{
          is_edit:false,
-         localCourse: { ...this.course } // 复制传递的 student 数据到局部数据
+         localCourse: { ...this.course } // 局部数据
        }
      },
      methods:{

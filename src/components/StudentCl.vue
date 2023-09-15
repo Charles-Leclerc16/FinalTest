@@ -27,7 +27,7 @@ import axios from 'axios';
      data(){
        return{
          is_edit:false,
-         localStudent: { ...this.student } // 复制传递的 student 数据到局部数据
+         localStudent: { ...this.student } // 局部数据
        }
      },
      methods:{
@@ -63,14 +63,14 @@ import axios from 'axios';
         data:this.localStudent
       }).then(() => {
         this.is_edit=false;
-        // this.getStudents(); // 删除学生后重新获取学生列表
+       
         location.reload();
       });
      }
      },
      computed:{
       formattedGpa() {
-      // 计算属性来格式化GPA值，保留两位小数
+     
       return this.localStudent.gpa.toFixed(2);
     }
      }
